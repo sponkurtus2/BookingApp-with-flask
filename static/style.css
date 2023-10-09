@@ -1,14 +1,13 @@
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
 /* Default mark color */
 #custom-highlight {
     background-color: rgba(0, 172, 193, 0.5);
 }
 
 #custom-highlight-country {
+    background-color: rgba(0,172,193, 0.5);
+}
+
+#custom-highlight-places {
     background-color: rgba(0,172,193, 0.5);
 }
 

@@ -5,8 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- PicoCss -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
     <title>Carlitos Booking</title>
     <!-- Fonts imports -->
@@ -23,8 +24,9 @@
   <ul>
     <li><strong>Booking <span class="material-symbols-outlined">flight_takeoff</span></strong></li>
   </ul>
-  <ul>
+  <ul class="ulHeader">
     <li><a href="#countrySection">Search by country</a></li>
+    <li><a href="#topPlaces">Top places</a></li>
     <li><span class="material-symbols-outlined"><button onclick="changeTheme()" class="buttonAnimation">light_mode</button></span></li>
   </ul>
     </nav>
@@ -41,10 +43,13 @@
         <article>
             <header class="subtitles">Come and visit one of almost 100 locations that we have available</header>
             <div class="alignPresentationImages">
-                <img class="presentationImages" src="{{ url_for('static', filename='images/img1.jpg') }}" >
-                <img class="presentationImages" src="{{ url_for('static', filename='images/img2.jpg') }}" >
-                <img class="presentationImages" src="{{ url_for('static', filename='images/img3.jpg') }}" >
-                <img class="presentationImages" src="{{ url_for('static', filename='images/img4.jpg') }}" >
+                <picture>
+                    <!-- Fix images xd (Not displaying) -->
+                    <source srcset="{{ url_for('static', filename='images/img1.webp') }}" type="image/webp">
+                    <source srcset="{{ url_for('static', filename='images/img2.webp') }}" type="image/webp">
+                    <source srcset="{{ url_for('static', filename='images/img3.webp') }}" type="image/webp">
+                    <source srcset="{{ url_for('static', filename='images/img4.webp') }}" type="image/webp">
+                </picture>
             </div>
             <footer></footer>
         </article>
@@ -66,7 +71,7 @@
             <article>
                 <header class="title">Some of our <mark id="custom-highlight-country">top</mark> countries</header>
                 <div class="parent">
-                    <img class="flags" src="{{ url_for('static', filename='images/flags/CanadaFlag.png') }}" >
+                <img class="flags" src="{{ url_for('static', filename='images/flags/CanadaFlag.png') }}" >
                 <img class="flags" src="{{ url_for('static', filename='images/flags/MexicoFlag.png') }}" >
                 <img class="flags" src="{{ url_for('static', filename='images/flags/UsaFlag.png') }}" >
                 <img class="flags" src="{{ url_for('static', filename='images/flags/FinlandFlag.png') }}" >
@@ -74,10 +79,31 @@
                 <img class="flags" src="{{ url_for('static', filename='images/flags/JapanFlag.png') }}" >
                 </div>
             <footer></footer>
-        </article>
+            </article>
         </div>
+
+    <div id="topPlaces">
+        <article>
+            <header class="title">Our most <mark id="custom-highlight-places">beautiful</mark> places</header>
+            <div class="parent">
+                <!-- Images -->
+            </div>
+            <footer></footer>
+        </article>
     </div>
 
-
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Smooth scrolling using Jquery -->
+    <script>
+    $(".ulHeader li a").on("click", function (e) {
+        // 1
+        e.preventDefault()
+        // 2
+        const href = $(this).attr("href")
+        // 3
+        $("html, body").animate({ scrollTop: $(href).offset().top }, 800)
+    })
+    </script>
 </body>
 </html>
